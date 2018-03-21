@@ -132,7 +132,7 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
 
   s.requires_arc = true
 
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+
+  s.dependency 'MJExtension', '~> 3.0' #依赖库
 
 end
