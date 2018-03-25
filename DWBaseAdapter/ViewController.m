@@ -33,7 +33,6 @@
 
 //初始化 tabViewAdapter
 -(void)createTableViewAdapter{
-    [self delegateTableDetaSource];
     self.tableView.delegate = _adapter;
     self.tableView.dataSource = _adapter;
     [self.tableView reloadData];
@@ -41,16 +40,11 @@
 
 //初始化 newTabViewAdapter
 -(void)createNewTableViewAdapter{
-    [self delegateTableDetaSource];
     self.tableView.delegate = _nAdapter;
     self.tableView.dataSource = _nAdapter;
     [self.tableView reloadData];
 }
 
-/** 切换俩个DataSource需要先清空一下 */
--(void)delegateTableDetaSource{
-
-}
 
 #pragma mark - AdapterDelegate 点击切换 tableView 样式
 
