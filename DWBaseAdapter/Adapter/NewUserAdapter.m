@@ -7,38 +7,33 @@
 //
 
 #import "NewUserAdapter.h"
+#import "testCell.h"
+#import "testCell2.h"
 
 @implementation NewUserAdapter
 
 //初始化DataSource
 -(NSMutableArray *)instanceDataSource{
     NSMutableArray *array = [NSMutableArray array];
-    [array addObject:@[@{DWRowType:@(NewNameType)}]];
     [array addObject:@[@{DWRowType:@(NewTextType)}]];
+    [array addObject:@[@{DWRowType:@(NewNameType)}]];
     return array;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
     NewUserModelEnum type = [self getRowType:self.dataSource indexPath:indexPath];
-    static NSString *CellIndentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndentifier];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier];
-    }
-    
     if (type == NewTextType) {
-        cell.textLabel.text = @"用户姓名";
-    }else if(type == NewNameType){
-        cell.textLabel.text = @"用户昵称";
+        testCell *cell = [testCell cellWithTableView:tableView];
+        cell.textLabel.text = @"用户姓名222";
+        return cell;
+    }else{
+        testCell2 *cell = [testCell2 cellWithTableView:tableView];
+        cell.textLabel.text = @"用户昵称222";
+        return cell;
     }
-    
-    return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self.myDelegate respondsToSelector:@selector(newUserDidSelectTableView: indexPath:)]) {
-        [self.myDelegate newUserDidSelectTableView:tableView indexPath:indexPath];
-    }
-}
+
 
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D00E28F2063F6A00042D520 /* DWBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D00E28E2063F6A00042D520 /* DWBaseTableViewCell.m */; };
+		7D00E2932064FB060042D520 /* testCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D00E2922064FB060042D520 /* testCell.m */; };
+		7D00E2962064FB770042D520 /* testCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D00E2952064FB770042D520 /* testCell2.m */; };
 		7DB6047520629BDE00026F91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6047420629BDE00026F91 /* AppDelegate.m */; };
 		7DB6047820629BDE00026F91 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6047720629BDE00026F91 /* ViewController.m */; };
 		7DB6047B20629BDE00026F91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB6047920629BDE00026F91 /* Main.storyboard */; };
@@ -39,6 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D00E28D2063F6A00042D520 /* DWBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewCell.h; sourceTree = "<group>"; };
+		7D00E28E2063F6A00042D520 /* DWBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableViewCell.m; sourceTree = "<group>"; };
+		7D00E2902063FF8C0042D520 /* DWBaseTableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewProtocol.h; sourceTree = "<group>"; };
+		7D00E2912064FB060042D520 /* testCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testCell.h; sourceTree = "<group>"; };
+		7D00E2922064FB060042D520 /* testCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testCell.m; sourceTree = "<group>"; };
+		7D00E2942064FB770042D520 /* testCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testCell2.h; sourceTree = "<group>"; };
+		7D00E2952064FB770042D520 /* testCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testCell2.m; sourceTree = "<group>"; };
 		7DB6047020629BDE00026F91 /* DWBaseAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DWBaseAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB6047320629BDE00026F91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7DB6047420629BDE00026F91 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -153,6 +163,10 @@
 				7DB604AC20629C2A00026F91 /* NewUserAdapter.m */,
 				7DB604AD20629C2A00026F91 /* UserAdapter.h */,
 				7DB604AE20629C2A00026F91 /* UserAdapter.m */,
+				7D00E2912064FB060042D520 /* testCell.h */,
+				7D00E2922064FB060042D520 /* testCell.m */,
+				7D00E2942064FB770042D520 /* testCell2.h */,
+				7D00E2952064FB770042D520 /* testCell2.m */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -164,6 +178,9 @@
 				7DB604A820629C2A00026F91 /* DWBaseTableAdapter.m */,
 				7DB604A920629C2A00026F91 /* DWBaseViewController.h */,
 				7DB604AA20629C2A00026F91 /* DWBaseViewController.m */,
+				7D00E28D2063F6A00042D520 /* DWBaseTableViewCell.h */,
+				7D00E28E2063F6A00042D520 /* DWBaseTableViewCell.m */,
+				7D00E2902063FF8C0042D520 /* DWBaseTableViewProtocol.h */,
 			);
 			path = DWBaseView;
 			sourceTree = "<group>";
@@ -302,11 +319,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DB604AF20629C7600026F91 /* DWBaseTableAdapter.m in Sources */,
+				7D00E28F2063F6A00042D520 /* DWBaseTableViewCell.m in Sources */,
 				7DB604B020629C7600026F91 /* DWBaseViewController.m in Sources */,
+				7D00E2932064FB060042D520 /* testCell.m in Sources */,
 				7DB604B120629C7600026F91 /* NewUserAdapter.m in Sources */,
 				7DB604B220629C7600026F91 /* UserAdapter.m in Sources */,
 				7DB6047820629BDE00026F91 /* ViewController.m in Sources */,
 				7DB6048320629BDE00026F91 /* main.m in Sources */,
+				7D00E2962064FB770042D520 /* testCell2.m in Sources */,
 				7DB6047520629BDE00026F91 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

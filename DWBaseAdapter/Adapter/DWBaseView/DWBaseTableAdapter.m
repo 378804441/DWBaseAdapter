@@ -7,6 +7,7 @@
 //
 
 #import "DWBaseTableAdapter.h"
+#import "DWBaseTableViewCell.h"
 
 typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
     noGropRowType = 0, //不分组
@@ -15,6 +16,10 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
 };
 
 NSString *const DWRowType = @"DWRowType"; //储存tableView时候的key
+
+@interface DWBaseTableAdapter()
+
+@end
 
 @implementation DWBaseTableAdapter
 
@@ -46,9 +51,67 @@ NSString *const DWRowType = @"DWRowType"; //储存tableView时候的key
 }
 
 #pragma mark 设置cell高度
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+/** 重写 estimatedHeightForRowAtIndexPath 更改tabview生命周期
+     从原本的
+ 1.先调用numberOfRowsInSection
+ 2.再调用heightForRowAtIndexPath
+ 3.再调用cellForRowAtIndexPath
+ 
+ 变成
+ 
+ 1.numberOfRowsInSection
+ 2.estimatedHeightForRowAtIndexPath
+ 3.cellForRowAtIndexPath
+ 4.heightForRowAtIndexPath
+ 
+ 以防止 在 heightForRowAtIndexPath 中调用 cellForRowAtIndexPath出现 EXC_BAD_ACCESS 错误
+ 
+ */
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 44;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSInteger type = [self getRowType:self.dataSource indexPath:indexPath];
+    /** 查看cell缓存池时候有缓存 */
+    NSDictionary *reusableTableCells = [tableView valueForKey:@"reusableTableCells"];
+    if (reusableTableCells.allKeys.count > 0) {
+        NSInteger cellRow = ((NSMutableDictionary *)[tableView valueForKeyPath:@"tentativeCells"]).allKeys.count;
+        /**
+             为甚么判断
+             多个 Adapter 切换时候 有缓存垃圾cell缓存数据会出现数据紊乱
+         */
+        UITableViewCell *cell;
+        NSDictionary *cacheCell = (NSMutableDictionary *)[tableView valueForKeyPath:@"tentativeCells"];
+        for (int i=0; i<cellRow; i++) {
+            if (type < cellRow) { //如果 缓存个数小于 rowType  直接用 type 进行赋值
+                cell = [self judgeRowType] == noGropRowType ? cacheCell[[[cacheCell.allKeys reverseObjectEnumerator] allObjects][type]] :
+                cacheCell[cacheCell.allKeys[type]];
+            }else{ //如果 缓存cell 个数大于等于 rowType 就用cell缓存个数-1 个来进行赋值
+                cell = cacheCell[[[cacheCell.allKeys reverseObjectEnumerator] allObjects][cellRow-1]];
+                
+            }
+        }
+        
+        if([cell isKindOfClass:[DWBaseTableViewCell class]]){ //判断是否继承 DWBaseTableViewCell
+            DWBaseTableViewCell *dwCell = (DWBaseTableViewCell *)cell;
+            return [dwCell getAutoCellHeight];
+        }
+        return 44;
+    }
+    
+    /** 正常布局 */
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if([cell isKindOfClass:[DWBaseTableViewCell class]]){ //判断是否继承 DWBaseTableViewCell
+        DWBaseTableViewCell *dwCell = (DWBaseTableViewCell *)cell;
+        return [dwCell getAutoCellHeight];
+    }
+    return 44;
+  
+}
+
 
 #pragma mark - headHeight & footerHeight
 
@@ -74,14 +137,15 @@ NSString *const DWRowType = @"DWRowType"; //储存tableView时候的key
     static NSString *CellIndentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndentifier];
     if(cell == nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier];
     }
     return cell;
 }
 
 #pragma mark - 点击
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{    if ([self.myDelegate respondsToSelector:@selector(didSelectTableView:indexPath:adapter:)]) {
+        [self.myDelegate didSelectTableView:tableView indexPath:indexPath adapter:self];
+    }
 }
 
 #pragma mark - 解析每行DataSource
@@ -116,5 +180,6 @@ NSString *const DWRowType = @"DWRowType"; //储存tableView时候的key
     }
     return dataSourceNormal;
 }
+
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "UserAdapter.h"
+#import "testCell.h"
+#import "testCell2.h"
 
 @implementation UserAdapter
 
@@ -15,31 +17,29 @@
     NSMutableArray *array = [NSMutableArray array];
     [array addObject:@{DWRowType:@(textType)}];
     [array addObject:@{DWRowType:@(nameType)}];
+    [array addObject:@{DWRowType:@(nameType)}];
+    [array addObject:@{DWRowType:@(textType)}];
+    [array addObject:@{DWRowType:@(textType)}];
+    [array addObject:@{DWRowType:@(nameType)}];
+    [array addObject:@{DWRowType:@(textType)}];
+    [array addObject:@{DWRowType:@(nameType)}];
     return array;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserModelEnum type = [self getRowType:self.dataSource indexPath:indexPath];
-    static NSString *CellIndentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndentifier];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier];
-    }
     
     if (type == textType) {
+        testCell *cell = [testCell cellWithTableView:tableView];
         cell.textLabel.text = @"用户姓名";
-    }else if(type == nameType){
+        return cell;
+    }else{
+        testCell2 *cell = [testCell2 cellWithTableView:tableView];
         cell.textLabel.text = @"用户昵称";
+        return cell;
     }
-    
-    return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self.myDelegate respondsToSelector:@selector(didSelectTableView: indexPath:)]) {
-        [self.myDelegate didSelectTableView:tableView indexPath:indexPath];
-    }
-}
 
 
 @end

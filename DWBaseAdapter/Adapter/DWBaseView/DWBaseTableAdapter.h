@@ -7,16 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DWBaseTableViewProtocol.h"
 
 extern NSString *const DWRowType;
 
-@interface DWBaseTableAdapter : NSObject<UITableViewDataSource, UITableViewDelegate>
+@interface DWBaseTableAdapter : NSObject<UITableViewDataSource, UITableViewDelegate, DWBaseTableViewProtocol>
 
 /** 数据源 */
 @property(nonatomic, strong) NSMutableArray *dataSource;
 
 /** 获取 dataSource rowType */
 -(NSUInteger)getRowType:(NSArray *)dataSource indexPath:(NSIndexPath *)indexPath;
+
+//代理
+@property(nonatomic, weak) id<DWBaseTableViewProtocol> myDelegate;
 
 @end

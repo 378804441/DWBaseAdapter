@@ -13,14 +13,6 @@ typedef NS_ENUM(NSInteger, NewUserModelEnum){
     NewNameType
 };
 
-@protocol NewUserAdapterDelegate <NSObject>
-@optional
--(void)newUserDidSelectTableView:(UITableView *)tabView indexPath:(NSIndexPath *)indexPath;
-@end
-
-
 @interface NewUserAdapter : DWBaseTableAdapter
-
-@property(nonatomic, weak) id<NewUserAdapterDelegate> myDelegate;
 
 @end

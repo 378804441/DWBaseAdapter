@@ -10,7 +10,7 @@
 #import "UserAdapter.h"
 #import "NewUserAdapter.h"
 
-@interface ViewController ()<UserAdapterDelegate, NewUserAdapterDelegate>
+@interface ViewController ()<DWBaseTableViewProtocol>
 
 @property (nonatomic, strong) UserAdapter *adapter;
 @property (nonatomic, strong) NewUserAdapter *nAdapter;
@@ -33,6 +33,7 @@
 
 //初始化 tabViewAdapter
 -(void)createTableViewAdapter{
+    [self delegateTableDetaSource];
     self.tableView.delegate = _adapter;
     self.tableView.dataSource = _adapter;
     [self.tableView reloadData];
@@ -40,19 +41,26 @@
 
 //初始化 newTabViewAdapter
 -(void)createNewTableViewAdapter{
+    [self delegateTableDetaSource];
     self.tableView.delegate = _nAdapter;
     self.tableView.dataSource = _nAdapter;
     [self.tableView reloadData];
 }
 
-#pragma mark - AdapterDelegate 点击切换 tableView 样式
+/** 切换俩个DataSource需要先清空一下 */
+-(void)delegateTableDetaSource{
 
--(void)didSelectTableView:(UITableView *)tabView indexPath:(NSIndexPath *)indexPath{
-    [self createNewTableViewAdapter];
 }
 
--(void)newUserDidSelectTableView:(UITableView *)tabView indexPath:(NSIndexPath *)indexPath{
-    [self createTableViewAdapter];
+#pragma mark - AdapterDelegate 点击切换 tableView 样式
+
+-(void)didSelectTableView:(UITableView *)tabView indexPath:(NSIndexPath *)indexPath adapter:(id)adapter{
+    if ([adapter isKindOfClass:[UserAdapter class]]) {
+        [self createNewTableViewAdapter];
+    }
+    if ([adapter isKindOfClass:[NewUserAdapter class]]) {
+        [self createTableViewAdapter];
+    }
 }
 
 
