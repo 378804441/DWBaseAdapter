@@ -7,7 +7,7 @@
 //
 
 #import "UserAdapter.h"
-#import "testCell.h"
+#import "test3Cell.h"
 #import "testCell2.h"
 
 @implementation UserAdapter
@@ -30,12 +30,10 @@
     UserModelEnum type = [self getRowType:self.dataSource indexPath:indexPath];
     
     if (type == textType) {
-        testCell *cell = [testCell cellWithTableView:tableView];
-        cell.textLabel.text = @"用户姓名";
+        test3Cell *cell = [test3Cell cellWithTableView:tableView];
         return cell;
     }else{
         testCell2 *cell = [testCell2 cellWithTableView:tableView];
-        cell.textLabel.text = @"用户昵称";
         return cell;
     }
 }

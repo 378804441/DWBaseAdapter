@@ -10,6 +10,9 @@
 
 @interface DWBaseTableViewCell : UITableViewCell
 
+//初始化
++(instancetype)cellWithTableView:(UITableView *)tableView;
+
 /** 获取cell高度 */
 -(float)getAutoCellHeight;
 

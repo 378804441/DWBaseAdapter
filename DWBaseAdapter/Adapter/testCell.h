@@ -13,4 +13,6 @@
 //初始化
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 
+@property (weak, nonatomic) IBOutlet UIButton *testBtn;
+
 @end

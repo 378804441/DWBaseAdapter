@@ -12,6 +12,11 @@
 @implementation DWBaseTableViewCell
 
 
+//初始化
++(instancetype)cellWithTableView:(UITableView *)tableView{
+    return nil;
+}
+
 /** 获取cell高度 */
 -(float)getAutoCellHeight{
     

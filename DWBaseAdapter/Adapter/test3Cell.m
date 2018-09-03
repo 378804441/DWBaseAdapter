@@ -1,30 +1,32 @@
 //
-//  testCell.m
+//  test3Cell.m
 //  DWBaseAdapter
 //
-//  Created by 丁 on 2018/3/23.
+//  Created by 丁 on 2018/3/27.
 //  Copyright © 2018年 丁巍. All rights reserved.
 //
 
-#import "testCell.h"
+#import "test3Cell.h"
 
-@interface testCell()
+@interface test3Cell()
 
+@property (weak, nonatomic) IBOutlet UIButton *test;
 
 @end
 
-@implementation testCell
+@implementation test3Cell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    // Initialization code
 }
 
 //初始化
 +(instancetype)cellWithTableView:(UITableView *)tableView{
-    static NSString *ID = @"testCell";
-    testCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    static NSString *ID = @"test3Cell";
+    test3Cell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell = [[testCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+        cell = [[test3Cell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -36,18 +38,15 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-       
-//        testCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"testCell" owner:nil options:nil] lastObject];
-//        cell.frame = CGRectMake(0, 0, self.contentView.frame.size.width, [self getAutoCellHeight]);
-//        [self.contentView addSubview:cell];
+        
     }
     return self;
 }
-
 
 /** 获取cell高度 */
 -(float)getAutoCellHeight{
     return 100;
 }
+
 
 @end
