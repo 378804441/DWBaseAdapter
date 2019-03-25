@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DWBaseCellProtocol.h"
 
-@interface DWBaseTableViewCell : UITableViewCell
+#define cellW [[UIScreen mainScreen] bounds].size.width
 
-//初始化
-+(instancetype)cellWithTableView:(UITableView *)tableView;
-
-/** 获取cell高度 */
--(float)getAutoCellHeight;
+@interface DWBaseTableViewCell : UITableViewCell<DWBaseCellProtocol>
 
 @end

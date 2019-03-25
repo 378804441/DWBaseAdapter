@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DWBaseViewController.h"
 
-@interface ViewController : DWBaseViewController
+@interface ViewController : UIViewController
 
 @end
 

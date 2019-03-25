@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D00E28F2063F6A00042D520 /* DWBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D00E28E2063F6A00042D520 /* DWBaseTableViewCell.m */; };
-		7D00E2932064FB060042D520 /* testCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D00E2922064FB060042D520 /* testCell.m */; };
-		7D00E2962064FB770042D520 /* testCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D00E2952064FB770042D520 /* testCell2.m */; };
-		7D313554206A883700E60291 /* testCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D313553206A883700E60291 /* testCell.xib */; };
-		7D313558206A930100E60291 /* test3Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D313556206A930100E60291 /* test3Cell.m */; };
-		7D313559206A930100E60291 /* test3Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D313557206A930100E60291 /* test3Cell.xib */; };
 		7DB6047520629BDE00026F91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6047420629BDE00026F91 /* AppDelegate.m */; };
 		7DB6047820629BDE00026F91 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6047720629BDE00026F91 /* ViewController.m */; };
 		7DB6047B20629BDE00026F91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB6047920629BDE00026F91 /* Main.storyboard */; };
@@ -21,10 +15,6 @@
 		7DB6048320629BDE00026F91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6048220629BDE00026F91 /* main.m */; };
 		7DB6048D20629BDF00026F91 /* DWBaseAdapterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6048C20629BDF00026F91 /* DWBaseAdapterTests.m */; };
 		7DB6049820629BDF00026F91 /* DWBaseAdapterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6049720629BDF00026F91 /* DWBaseAdapterUITests.m */; };
-		7DB604AF20629C7600026F91 /* DWBaseTableAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB604A820629C2A00026F91 /* DWBaseTableAdapter.m */; };
-		7DB604B020629C7600026F91 /* DWBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB604AA20629C2A00026F91 /* DWBaseViewController.m */; };
-		7DB604B120629C7600026F91 /* NewUserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB604AC20629C2A00026F91 /* NewUserAdapter.m */; };
-		7DB604B220629C7600026F91 /* UserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB604AE20629C2A00026F91 /* UserAdapter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,17 +35,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7D00E28D2063F6A00042D520 /* DWBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewCell.h; sourceTree = "<group>"; };
-		7D00E28E2063F6A00042D520 /* DWBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableViewCell.m; sourceTree = "<group>"; };
-		7D00E2902063FF8C0042D520 /* DWBaseTableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewProtocol.h; sourceTree = "<group>"; };
-		7D00E2912064FB060042D520 /* testCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testCell.h; sourceTree = "<group>"; };
-		7D00E2922064FB060042D520 /* testCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testCell.m; sourceTree = "<group>"; };
-		7D00E2942064FB770042D520 /* testCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testCell2.h; sourceTree = "<group>"; };
-		7D00E2952064FB770042D520 /* testCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testCell2.m; sourceTree = "<group>"; };
-		7D313553206A883700E60291 /* testCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testCell.xib; sourceTree = "<group>"; };
-		7D313555206A930100E60291 /* test3Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test3Cell.h; sourceTree = "<group>"; };
-		7D313556206A930100E60291 /* test3Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test3Cell.m; sourceTree = "<group>"; };
-		7D313557206A930100E60291 /* test3Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = test3Cell.xib; sourceTree = "<group>"; };
+		350B7AE522486317005E8BE4 /* DWBaseHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseHandler.m; sourceTree = "<group>"; };
+		350B7AE622486317005E8BE4 /* DWBaseHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseHandler.h; sourceTree = "<group>"; };
+		350B7AE722486317005E8BE4 /* DWBaseHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseHandlerProtocol.h; sourceTree = "<group>"; };
+		350B7AE922486317005E8BE4 /* DWBaseTableDataSourceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableDataSourceModel.h; sourceTree = "<group>"; };
+		350B7AEA22486317005E8BE4 /* DWBaseTableDataSourceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableDataSourceModel.m; sourceTree = "<group>"; };
+		350B7AEB22486317005E8BE4 /* DWBaseTableAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableAdapter.h; sourceTree = "<group>"; };
+		350B7AEC22486317005E8BE4 /* DWBaseTableAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableAdapter.m; sourceTree = "<group>"; };
+		350B7AEE22486317005E8BE4 /* DWBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableViewCell.m; sourceTree = "<group>"; };
+		350B7AEF22486317005E8BE4 /* DWBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewCell.h; sourceTree = "<group>"; };
+		350B7AF022486317005E8BE4 /* DWBaseCellProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseCellProtocol.h; sourceTree = "<group>"; };
+		350B7AF122486317005E8BE4 /* DWBaseTableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewProtocol.h; sourceTree = "<group>"; };
+		350B7AF322486317005E8BE4 /* DWIocComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWIocComponent.h; sourceTree = "<group>"; };
+		350B7AF422486317005E8BE4 /* DWIocComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWIocComponent.m; sourceTree = "<group>"; };
 		7DB6047020629BDE00026F91 /* DWBaseAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DWBaseAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB6047320629BDE00026F91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7DB6047420629BDE00026F91 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,14 +64,6 @@
 		7DB6049320629BDF00026F91 /* DWBaseAdapterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DWBaseAdapterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB6049720629BDF00026F91 /* DWBaseAdapterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseAdapterUITests.m; sourceTree = "<group>"; };
 		7DB6049920629BDF00026F91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7DB604A720629C2A00026F91 /* DWBaseTableAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableAdapter.h; sourceTree = "<group>"; };
-		7DB604A820629C2A00026F91 /* DWBaseTableAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableAdapter.m; sourceTree = "<group>"; };
-		7DB604A920629C2A00026F91 /* DWBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseViewController.h; sourceTree = "<group>"; };
-		7DB604AA20629C2A00026F91 /* DWBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseViewController.m; sourceTree = "<group>"; };
-		7DB604AB20629C2A00026F91 /* NewUserAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserAdapter.h; sourceTree = "<group>"; };
-		7DB604AC20629C2A00026F91 /* NewUserAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserAdapter.m; sourceTree = "<group>"; };
-		7DB604AD20629C2A00026F91 /* UserAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAdapter.h; sourceTree = "<group>"; };
-		7DB604AE20629C2A00026F91 /* UserAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAdapter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +91,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		350B7AE22248630E005E8BE4 /* DWAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				350B7AED22486317005E8BE4 /* Cell */,
+				350B7AE822486317005E8BE4 /* DataSource */,
+				350B7AE422486317005E8BE4 /* Handler */,
+				350B7AF222486317005E8BE4 /* RuntimeMethod */,
+				350B7AEB22486317005E8BE4 /* DWBaseTableAdapter.h */,
+				350B7AEC22486317005E8BE4 /* DWBaseTableAdapter.m */,
+				350B7AF122486317005E8BE4 /* DWBaseTableViewProtocol.h */,
+			);
+			path = DWAdapter;
+			sourceTree = "<group>";
+		};
+		350B7AE422486317005E8BE4 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				350B7AE522486317005E8BE4 /* DWBaseHandler.m */,
+				350B7AE622486317005E8BE4 /* DWBaseHandler.h */,
+				350B7AE722486317005E8BE4 /* DWBaseHandlerProtocol.h */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		350B7AE822486317005E8BE4 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				350B7AE922486317005E8BE4 /* DWBaseTableDataSourceModel.h */,
+				350B7AEA22486317005E8BE4 /* DWBaseTableDataSourceModel.m */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		350B7AED22486317005E8BE4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				350B7AEE22486317005E8BE4 /* DWBaseTableViewCell.m */,
+				350B7AEF22486317005E8BE4 /* DWBaseTableViewCell.h */,
+				350B7AF022486317005E8BE4 /* DWBaseCellProtocol.h */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		350B7AF222486317005E8BE4 /* RuntimeMethod */ = {
+			isa = PBXGroup;
+			children = (
+				350B7AF322486317005E8BE4 /* DWIocComponent.h */,
+				350B7AF422486317005E8BE4 /* DWIocComponent.m */,
+			);
+			path = RuntimeMethod;
+			sourceTree = "<group>";
+		};
+		350B7AF52248641B005E8BE4 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				7DB6047920629BDE00026F91 /* Main.storyboard */,
+				7DB6047C20629BDE00026F91 /* Assets.xcassets */,
+				7DB6047E20629BDE00026F91 /* LaunchScreen.storyboard */,
+				7DB6048220629BDE00026F91 /* main.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		7DB6046720629BDE00026F91 = {
 			isa = PBXGroup;
 			children = (
@@ -130,16 +177,13 @@
 		7DB6047220629BDE00026F91 /* DWBaseAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				7DB604A520629C2A00026F91 /* Adapter */,
+				350B7AF52248641B005E8BE4 /* Support */,
+				350B7AE22248630E005E8BE4 /* DWAdapter */,
 				7DB6047320629BDE00026F91 /* AppDelegate.h */,
 				7DB6047420629BDE00026F91 /* AppDelegate.m */,
 				7DB6047620629BDE00026F91 /* ViewController.h */,
 				7DB6047720629BDE00026F91 /* ViewController.m */,
-				7DB6047920629BDE00026F91 /* Main.storyboard */,
-				7DB6047C20629BDE00026F91 /* Assets.xcassets */,
-				7DB6047E20629BDE00026F91 /* LaunchScreen.storyboard */,
 				7DB6048120629BDE00026F91 /* Info.plist */,
-				7DB6048220629BDE00026F91 /* main.m */,
 			);
 			path = DWBaseAdapter;
 			sourceTree = "<group>";
@@ -160,40 +204,6 @@
 				7DB6049920629BDF00026F91 /* Info.plist */,
 			);
 			path = DWBaseAdapterUITests;
-			sourceTree = "<group>";
-		};
-		7DB604A520629C2A00026F91 /* Adapter */ = {
-			isa = PBXGroup;
-			children = (
-				7DB604A620629C2A00026F91 /* DWBaseView */,
-				7DB604AB20629C2A00026F91 /* NewUserAdapter.h */,
-				7DB604AC20629C2A00026F91 /* NewUserAdapter.m */,
-				7DB604AD20629C2A00026F91 /* UserAdapter.h */,
-				7DB604AE20629C2A00026F91 /* UserAdapter.m */,
-				7D00E2912064FB060042D520 /* testCell.h */,
-				7D00E2922064FB060042D520 /* testCell.m */,
-				7D00E2942064FB770042D520 /* testCell2.h */,
-				7D00E2952064FB770042D520 /* testCell2.m */,
-				7D313553206A883700E60291 /* testCell.xib */,
-				7D313555206A930100E60291 /* test3Cell.h */,
-				7D313556206A930100E60291 /* test3Cell.m */,
-				7D313557206A930100E60291 /* test3Cell.xib */,
-			);
-			path = Adapter;
-			sourceTree = "<group>";
-		};
-		7DB604A620629C2A00026F91 /* DWBaseView */ = {
-			isa = PBXGroup;
-			children = (
-				7DB604A720629C2A00026F91 /* DWBaseTableAdapter.h */,
-				7DB604A820629C2A00026F91 /* DWBaseTableAdapter.m */,
-				7DB604A920629C2A00026F91 /* DWBaseViewController.h */,
-				7DB604AA20629C2A00026F91 /* DWBaseViewController.m */,
-				7D00E28D2063F6A00042D520 /* DWBaseTableViewCell.h */,
-				7D00E28E2063F6A00042D520 /* DWBaseTableViewCell.m */,
-				7D00E2902063FF8C0042D520 /* DWBaseTableViewProtocol.h */,
-			);
-			path = DWBaseView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,10 +313,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DB6048020629BDE00026F91 /* LaunchScreen.storyboard in Resources */,
-				7D313554206A883700E60291 /* testCell.xib in Resources */,
 				7DB6047D20629BDE00026F91 /* Assets.xcassets in Resources */,
 				7DB6047B20629BDE00026F91 /* Main.storyboard in Resources */,
-				7D313559206A930100E60291 /* test3Cell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,16 +339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DB604AF20629C7600026F91 /* DWBaseTableAdapter.m in Sources */,
-				7D00E28F2063F6A00042D520 /* DWBaseTableViewCell.m in Sources */,
-				7DB604B020629C7600026F91 /* DWBaseViewController.m in Sources */,
-				7D313558206A930100E60291 /* test3Cell.m in Sources */,
-				7D00E2932064FB060042D520 /* testCell.m in Sources */,
-				7DB604B120629C7600026F91 /* NewUserAdapter.m in Sources */,
-				7DB604B220629C7600026F91 /* UserAdapter.m in Sources */,
 				7DB6047820629BDE00026F91 /* ViewController.m in Sources */,
 				7DB6048320629BDE00026F91 /* main.m in Sources */,
-				7D00E2962064FB770042D520 /* testCell2.m in Sources */,
 				7DB6047520629BDE00026F91 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
