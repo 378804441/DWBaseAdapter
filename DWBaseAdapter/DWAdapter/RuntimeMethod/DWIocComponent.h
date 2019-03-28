@@ -6,11 +6,14 @@
 //  Copyright © 2019 丁巍. All rights reserved.
 //
 
-//  控制反转组件
+//  runtime 调用方法组件
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+#define IsEmpty(str)            (str == nil || ![str respondsToSelector:@selector(isEqualToString:)] || [str isEqualToString:@""])
+#define IsNull(obj)             (obj == nil || [obj isEqual:[NSNull null]])
 
 typedef void(^methodResultBlock)(id __nullable returnObj);
 

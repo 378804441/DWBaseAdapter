@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DWBaseCellProtocol <NSObject>
 @optional
 
-@property(nonatomic, weak) id<NSObject> myDelegate;
+@property(nonatomic, weak) id myDelegate;
 
 /** 初始化 */
 + (instancetype)cellWithTableView:(UITableView *)tableView;

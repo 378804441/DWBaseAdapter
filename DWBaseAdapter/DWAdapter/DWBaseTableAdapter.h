@@ -33,6 +33,9 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 /** 数据源 */
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+/** 不遵循 DWBaseCellProtocol 协议，或者不指定cell高度时候默认高度  (没有初始化将会是44) */
+@property (nonatomic, assign) CGFloat defaultCellHeight;
+
 
 #pragma mark - public method
 

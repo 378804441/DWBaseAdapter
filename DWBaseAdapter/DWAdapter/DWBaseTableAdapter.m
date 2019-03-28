@@ -24,6 +24,15 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
 
 @implementation DWBaseTableAdapter
 
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.defaultCellHeight = 44;
+    }
+    return self;
+}
+
+
 #pragma mark - 初始化DataSource方法
 
 //数据源初始化
@@ -72,32 +81,51 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
 #pragma mark - 常规 tableView delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    id <DWBaseCellProtocol>cellObjc = [self getDataSourceWithSourceArray:self.dataSource indexPath:indexPath type:DWBaseTableAdapterRowType_rowCell];
+    id cellObjc = [self getDataSourceWithSourceArray:self.dataSource indexPath:indexPath type:DWBaseTableAdapterRowType_rowCell];
+    // 如果没有遵循 DWBaseCellProtocol 协议将直接返回高度
+    if (![cellObjc conformsToProtocol:@protocol(DWBaseCellProtocol)]) {
+        return self.defaultCellHeight;
+    }
+    
+    id <DWBaseCellProtocol>protocolCell = cellObjc;
     /** 需要传Model 动态计算高度 */
-    if([cellObjc respondsToSelector:@selector(getAutoCellHeightWithModel:)]){
+    if([protocolCell respondsToSelector:@selector(getAutoCellHeightWithModel:)]){
         id cellData = [self getDataSourceWithSourceArray:self.dataSource indexPath:indexPath type:DWBaseTableAdapterRowType_rowData];
-        return [cellObjc getAutoCellHeightWithModel:cellData];
+        return [protocolCell getAutoCellHeightWithModel:cellData];
     /** 不需要传参 固定高度 */
-    }else if([cellObjc respondsToSelector:@selector(getAutoCellHeight)]){
-        return [cellObjc getAutoCellHeight];
+    }else if([protocolCell respondsToSelector:@selector(getAutoCellHeight)]){
+        return [protocolCell getAutoCellHeight];
     /** 安全高度 */
-    }else return 44;
+    }else return self.defaultCellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // cell 类对象
-    id <DWBaseCellProtocol>cellObjc = [self getDataSourceWithSourceArray:self.dataSource indexPath:indexPath type:DWBaseTableAdapterRowType_rowCell];
+    id cellObjc = [self getDataSourceWithSourceArray:self.dataSource indexPath:indexPath type:DWBaseTableAdapterRowType_rowCell];
+    // 如果没有遵循 DWBaseCellProtocol 协议将直接返回安全数组
+    if (![cellObjc conformsToProtocol:@protocol(DWBaseCellProtocol)]) {
+        return [self createSecurityCellWithTableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+    
+    id <DWBaseCellProtocol>protocolCell = cellObjc;
+    
+    NSString *errorStr = [NSString stringWithFormat:@"既然遵循了 DWBaseCellProtocol 协议, 就请实现协议里的初始化方法。不然直接重写 tableView cellForRowAtIndexPath 方法。\n Cell 名称 : %@", NSStringFromClass([protocolCell class])];
+    NSAssert([protocolCell conformsToProtocol:@protocol(DWBaseCellProtocol)] &&
+             [protocolCell respondsToSelector:@selector(cellWithTableView:)],
+             errorStr);
+    
     // 初始化Cell 实例对象
-    id cell = [cellObjc cellWithTableView:tableView];
+    id cell = [protocolCell cellWithTableView:tableView];
     
     // 实例对象不存在直接返回一个安全Cell
-    if (!cell) return [self createSecurityTableView:tableView cellForRowAtIndexPath:indexPath];
+    if (!cell) return [self createSecurityCellWithTableView:tableView cellForRowAtIndexPath:indexPath];
     
     // 绑定数据
     id cellData = [self getDataSourceWithSourceArray:self.dataSource indexPath:indexPath type:DWBaseTableAdapterRowType_rowData];
     if ([cell respondsToSelector:@selector(bindWithCellModel:indexPath:)]) {
         [cell bindWithCellModel:cellData indexPath:indexPath];
     }
+    
     /** 指定delegate */
     id delegateObj = [self getDataSourceWithSourceArray:self.dataSource indexPath:indexPath type:DWBaseTableAdapterRowType_rowDelegate];
     if (delegateObj) {
@@ -107,7 +135,7 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
 }
 
 /** 创建安全Cell */
-- (UITableViewCell *)createSecurityTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)createSecurityCellWithTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIndentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndentifier];
     if(cell == nil){
