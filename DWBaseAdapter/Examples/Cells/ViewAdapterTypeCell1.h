@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ViewAdapterTypeCell1 : UITableViewCell
+@interface ViewAdapterTypeCell1 : UITableViewCell<DWBaseCellProtocol>
 
 @end
 

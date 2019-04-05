@@ -58,6 +58,8 @@ typedef NS_ENUM(NSInteger, ViewAdapterType){
 
 -(void)cell4_clickDelegate{
     NSLog(@"点击了 cell4");
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    [self deleteCellWithIndexPath:indexPath indexSet:nil];
 }
 
 

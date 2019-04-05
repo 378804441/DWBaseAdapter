@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DWBaseCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ViewAdapterTypeCell5 : UITableViewCell
+@interface ViewAdapterTypeCell5 : UITableViewCell<DWBaseCellProtocol>
 
 @end
 

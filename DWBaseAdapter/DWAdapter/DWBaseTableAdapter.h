@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 #pragma mark - public property
 
 /** delegate */
-@property (nonatomic, weak)   id<DWBaseTableViewProtocol> myDelegate;
+@property (nonatomic, weak)   id<DWBaseTableViewProtocol> tableProtocolDelegate;
 
 /** 注册tableView */
 @property (nonatomic, strong) UITableView *tableView;
@@ -33,8 +33,8 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 /** 数据源 */
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
-/** 不遵循 DWBaseCellProtocol 协议，或者不指定cell高度时候默认高度  (没有初始化将会是44) */
-@property (nonatomic, assign) CGFloat defaultCellHeight;
+/** 不遵循 DWBaseTableViewProtocol 协议时候安全数组高度*/
+@property (nonatomic, assign) CGFloat securityCellHeight;
 
 
 #pragma mark - public method
@@ -43,6 +43,14 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 -(NSMutableArray *)instanceDataSource;
 
 /** 获取 指定的dataSource内容 */
--(id)getDataSourceWithSourceArray:(NSArray *)sourceArray indexPath:(NSIndexPath *)indexPath type:(DWBaseTableAdapterRowType)type;
+-(id)getDataSourceWithIndexPath:(NSIndexPath *)indexPath type:(DWBaseTableAdapterRowType)type;
+
+/** 删除cell */
+-(void)deleteCellWithIndexPath:(NSIndexPath * __nullable)indexPath indexSet:(NSIndexSet * __nullable)indexSet;
+
+/** 插入cell */
+
+/** 更改cell */
+
 
 @end

@@ -40,9 +40,9 @@
 /** 初始化AD */
 -(void)createAllAD{
     _adapter = [[ViewAdapter alloc] init];
-    _adapter.myDelegate = self;
-    _adapter.tableView  = self.tableView;
-//    _adapter.defaultCellHeight = CGFLOAT_MIN;
+    _adapter.tableProtocolDelegate = self;
+    _adapter.tableView             = self.tableView;
+    _adapter.securityCellHeight    = CGFLOAT_MIN;
 }
 
 /** 指定AD */
