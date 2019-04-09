@@ -9,6 +9,8 @@
 #import "ViewAdapterTypeCell4.h"
 
 @implementation ViewAdapterTypeCell4
+@synthesize myDelegate = _myDelegate;
+
 
 +(instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *ID = @"ViewAdapterTypeCell4";
@@ -37,6 +39,10 @@
     NSString *text = dataDic[@"text"];
     self.textLabel.text = text;
     self.textLabel.font = [UIFont systemFontOfSize:12];
+}
+
++(float)getAutoCellHeight{
+    return 44;
 }
 
 #pragma mark - delegate

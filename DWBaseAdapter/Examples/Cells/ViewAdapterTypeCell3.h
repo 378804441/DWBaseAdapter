@@ -6,11 +6,12 @@
 //  Copyright © 2019 丁巍. All rights reserved.
 //
 
-#import "DWBaseTableViewCell.h"
+#import <UIKit/UIKit.h>
+#import "DWBaseCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ViewAdapterTypeCell3 : DWBaseTableViewCell
+@interface ViewAdapterTypeCell3 : UITableViewCell<DWBaseCellProtocol>
 
 @end
 

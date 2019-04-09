@@ -10,7 +10,6 @@
 		350B7B012248CADF005E8BE4 /* ViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B7B002248CADE005E8BE4 /* ViewAdapter.m */; };
 		3597E4B9225C44FD0087C66A /* DWBaseTableAdapter+Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597E4B6225C44FD0087C66A /* DWBaseTableAdapter+Action.m */; };
 		3597E4BA225C44FD0087C66A /* DWBaseTableAdapter+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597E4B7225C44FD0087C66A /* DWBaseTableAdapter+Refresh.m */; };
-		35D818DE224C4FCE009FDFAD /* DWBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B7AEE22486317005E8BE4 /* DWBaseTableViewCell.m */; };
 		35D818DF224C4FCE009FDFAD /* DWBaseTableDataSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B7AEA22486317005E8BE4 /* DWBaseTableDataSourceModel.m */; };
 		35D818E0224C4FCE009FDFAD /* DWBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B7AE522486317005E8BE4 /* DWBaseHandler.m */; };
 		35D818E1224C4FCE009FDFAD /* DWIocComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B7AF422486317005E8BE4 /* DWIocComponent.m */; };
@@ -55,8 +54,6 @@
 		350B7AEA22486317005E8BE4 /* DWBaseTableDataSourceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableDataSourceModel.m; sourceTree = "<group>"; };
 		350B7AEB22486317005E8BE4 /* DWBaseTableAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableAdapter.h; sourceTree = "<group>"; };
 		350B7AEC22486317005E8BE4 /* DWBaseTableAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableAdapter.m; sourceTree = "<group>"; };
-		350B7AEE22486317005E8BE4 /* DWBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWBaseTableViewCell.m; sourceTree = "<group>"; };
-		350B7AEF22486317005E8BE4 /* DWBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewCell.h; sourceTree = "<group>"; };
 		350B7AF022486317005E8BE4 /* DWBaseCellProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseCellProtocol.h; sourceTree = "<group>"; };
 		350B7AF122486317005E8BE4 /* DWBaseTableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWBaseTableViewProtocol.h; sourceTree = "<group>"; };
 		350B7AF322486317005E8BE4 /* DWIocComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWIocComponent.h; sourceTree = "<group>"; };
@@ -124,13 +121,12 @@
 			isa = PBXGroup;
 			children = (
 				3597E4B4225C44FD0087C66A /* Category */,
-				350B7AED22486317005E8BE4 /* Cell */,
+				350B7AED22486317005E8BE4 /* Protocol */,
 				350B7AE822486317005E8BE4 /* DataSource */,
 				350B7AE422486317005E8BE4 /* Handler */,
 				350B7AF222486317005E8BE4 /* RuntimeMethod */,
 				350B7AEB22486317005E8BE4 /* DWBaseTableAdapter.h */,
 				350B7AEC22486317005E8BE4 /* DWBaseTableAdapter.m */,
-				350B7AF122486317005E8BE4 /* DWBaseTableViewProtocol.h */,
 			);
 			path = DWAdapter;
 			sourceTree = "<group>";
@@ -140,7 +136,6 @@
 			children = (
 				350B7AE622486317005E8BE4 /* DWBaseHandler.h */,
 				350B7AE522486317005E8BE4 /* DWBaseHandler.m */,
-				350B7AE722486317005E8BE4 /* DWBaseHandlerProtocol.h */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -154,14 +149,14 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
-		350B7AED22486317005E8BE4 /* Cell */ = {
+		350B7AED22486317005E8BE4 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				350B7AEF22486317005E8BE4 /* DWBaseTableViewCell.h */,
-				350B7AEE22486317005E8BE4 /* DWBaseTableViewCell.m */,
+				350B7AF122486317005E8BE4 /* DWBaseTableViewProtocol.h */,
 				350B7AF022486317005E8BE4 /* DWBaseCellProtocol.h */,
+				350B7AE722486317005E8BE4 /* DWBaseHandlerProtocol.h */,
 			);
-			path = Cell;
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		350B7AF222486317005E8BE4 /* RuntimeMethod */ = {
@@ -409,7 +404,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3597E4BA225C44FD0087C66A /* DWBaseTableAdapter+Refresh.m in Sources */,
-				35D818DE224C4FCE009FDFAD /* DWBaseTableViewCell.m in Sources */,
 				35D818DF224C4FCE009FDFAD /* DWBaseTableDataSourceModel.m in Sources */,
 				35D818ED224C5278009FDFAD /* ViewAdapterTypeCell3.m in Sources */,
 				35D818E0224C4FCE009FDFAD /* DWBaseHandler.m in Sources */,

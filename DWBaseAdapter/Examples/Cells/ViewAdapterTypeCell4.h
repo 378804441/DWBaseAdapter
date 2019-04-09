@@ -6,7 +6,8 @@
 //  Copyright © 2019 丁巍. All rights reserved.
 //
 
-#import "DWBaseTableViewCell.h"
+#import <UIKit/UIKit.h>
+#import "DWBaseCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)cell4_clickDelegate;
 @end
 
-@interface ViewAdapterTypeCell4 : DWBaseTableViewCell
+@interface ViewAdapterTypeCell4 : UITableViewCell<DWBaseCellProtocol>
 
 @property(nonatomic, weak) id<ViewAdapterTypeCell4Delegate> myDelegate;
 
