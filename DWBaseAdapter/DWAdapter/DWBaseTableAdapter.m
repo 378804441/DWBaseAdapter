@@ -2,42 +2,39 @@
 //  DWBaseTableAdapter.m
 //  BaseTableView 适配器
 //
-//  Created by 丁 on 2018/3/20.
-//  Copyright © 2018年 丁. All rights reserved.
+//  Created by 丁巍 on 2018/12/11.
+//  Copyright © 2018年 丁巍. All rights reserved.
 //
 
 #import "DWBaseTableAdapter.h"
 
-#define WS(weakSelf)    __weak   __typeof(&*self) weakSelf = self;
-#define SS(strongSelf)  __strong __typeof__(weakSelf) strongSelf = weakSelf;
 
-#define IsEmpty(str)    (str == nil || ![str respondsToSelector:@selector(isEqualToString:)] || [str isEqualToString:@""])
-
-typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
-    DWBaseTableAdapterRow_noGrop = 0, //不分组
-    DWBaseTableAdapterRow_grop,       //分组
-    DWBaseTableAdapterRow_normal      //数据源为空
-};
+#define IsEmpty(str)            (str == nil || ![str respondsToSelector:@selector(isEqualToString:)] || [str isEqualToString:@""])
 
 @interface DWBaseTableAdapter()
-
-/** 绑定到该适配器上的handler */
-@property (nonatomic, assign) id adapterHandler;
-
-/** 最大线程 */
-@property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
 @end
 
 @implementation DWBaseTableAdapter
 
-- (instancetype)init{
+
+#pragma mark - init method
+
+/** 初始化 adapter */
+-(instancetype)initAdapterWithTableView:(UITableView *)tableView{
     self = [super init];
     if (self) {
+        NSParameterAssert(tableView);
+        _tableView              = tableView;
         self.securityCellHeight = 44;
-        _semaphore = dispatch_semaphore_create(1);
+        self.semaphore          = dispatch_semaphore_create(1);
     }
     return self;
+}
+
+-(void)updateAdapterTableView:(UITableView *)tableView{
+    NSParameterAssert(tableView);
+    _tableView = tableView;
 }
 
 
@@ -51,78 +48,10 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
     return _dataSource;
 }
 
+// 静态数据源初始化 重写该方法即可
 -(NSMutableArray *)instanceDataSource{
     NSMutableArray *array = [NSMutableArray array];
     return array;
-}
-
-
-#pragma mark - private method
-
-/** 删除cell */
--(void)deleteCellWithIndexPath:(NSIndexPath * __nullable)indexPath indexSet:(NSIndexSet * __nullable)indexSet{
-    
-    /**
-     如果是不分组类型 就算传了indexSet 也会置为空
-     如果indexSet 不为空 (分组类型 并且 要删除整个session) 将会给indexPath一个默认值 为了通过断言检测
-     */
-    DWBaseTableAdapterRowEnum rowType = [self checkRowType];
-    if (rowType == DWBaseTableAdapterRow_noGrop) indexSet = nil;
-    if (indexSet) indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    
-    WS(weakSelf);
-    [self checkDataSourceWithIndexPath:indexPath block:^(DWBaseTableAdapterRowEnum type) {
-        SS(strongSelf);
-        if (type == DWBaseTableAdapterRow_noGrop) {
-            dispatch_semaphore_wait(strongSelf.semaphore, DISPATCH_TIME_FOREVER);
-            [self.dataSource removeObjectAtIndex:indexPath.row];
-            [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            [self.tableView endUpdates];
-            dispatch_semaphore_signal(strongSelf.semaphore);
-        }else if(type == DWBaseTableAdapterRow_grop){
-            
-            // 删除整个session
-            if (indexSet) {
-                NSInteger deleteLocation = indexSet.firstIndex;
-                dispatch_semaphore_wait(strongSelf.semaphore, DISPATCH_TIME_FOREVER);
-                [self.dataSource removeObjectAtIndex:deleteLocation];
-                [self.tableView beginUpdates];
-                [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
-                [self.tableView endUpdates];
-                dispatch_semaphore_signal(strongSelf.semaphore);
-                return ;
-            }
-            
-            // 删除session 里面的某一行
-            dispatch_semaphore_wait(strongSelf.semaphore, DISPATCH_TIME_FOREVER);
-            
-            NSMutableArray * tempArr = [[NSMutableArray alloc] init];
-            tempArr = [self.dataSource[indexPath.section] mutableCopy];
-            [tempArr removeObjectAtIndex:indexPath.row];
-            [self.dataSource replaceObjectAtIndex:indexPath.section withObject:tempArr];
-            
-            [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            [self.tableView endUpdates];
-            dispatch_semaphore_signal(strongSelf.semaphore);
-        }
-    }];
-}
-
-// 检查是否合法
--(void)checkDataSourceWithIndexPath:(NSIndexPath *)indexPath block:(void(^)(DWBaseTableAdapterRowEnum type))blcok{
-    NSParameterAssert(self.tableView);
-    NSParameterAssert([indexPath isKindOfClass:[NSIndexPath class]]);
-    
-    DWBaseTableAdapterRowEnum rowType = [self checkRowType];
-    if (rowType == DWBaseTableAdapterRow_noGrop) {
-        NSParameterAssert(indexPath && self.dataSource.count > 0 && self.dataSource[indexPath.row] && indexPath.section == 0);
-        if (blcok) blcok(rowType);
-    }else if(rowType == DWBaseTableAdapterRow_grop){
-        NSParameterAssert(indexPath && self.dataSource.count > 0 && self.dataSource[indexPath.section] && self.dataSource[indexPath.section][indexPath.row]);
-        if (blcok) blcok(rowType);
-    }
 }
 
 
@@ -141,10 +70,13 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
 }
 
 
-
 #pragma mark - headHeight & footerHeight
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if([self checkRowType] == DWBaseTableAdapterRow_grop){
+        if (section == 0) return CGFLOAT_MIN;
+        return 10;
+    }
     return CGFLOAT_MIN;
 }
 
@@ -159,30 +91,28 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
 #pragma mark - 常规 tableView delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    id cellObjc = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowCell];
-    // 如果没有遵循 DWBaseCellProtocol 协议将直接返回高度
-    if (![cellObjc conformsToProtocol:@protocol(DWBaseCellProtocol)]) {
-        return self.securityCellHeight;
-    }
+    id <DWBaseCellProtocol>cellObjc = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowCell];
+    // 数据源添加进来的Cell如果没有遵循该协议直接返回安全高度
+    if (![cellObjc conformsToProtocol:@protocol(DWBaseCellProtocol)]) return self.securityCellHeight==0 ? CGFLOAT_MIN : self.securityCellHeight;
     
-    id <DWBaseCellProtocol>protocolCell = cellObjc;
     /** 需要传Model 动态计算高度 */
-    if([protocolCell respondsToSelector:@selector(getAutoCellHeightWithModel:)]){
+    if([cellObjc respondsToSelector:@selector(getAutoCellHeightWithModel:)]){
         id cellData = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowData];
-        return [protocolCell getAutoCellHeightWithModel:cellData];
-    /** 不需要传参 固定高度 */
-    }else if([protocolCell respondsToSelector:@selector(getAutoCellHeight)]){
-        return [protocolCell getAutoCellHeight];
-    /** 安全高度 */
-    }else return self.securityCellHeight;
+        return [cellObjc getAutoCellHeightWithModel:cellData];
+        /** 不需要传参 固定高度 */
+    }else if([cellObjc respondsToSelector:@selector(getAutoCellHeight)]){
+        return [cellObjc getAutoCellHeight];
+        /** 安全高度 */
+    }else return self.securityCellHeight==0 ? CGFLOAT_MIN : self.securityCellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // cell 类对象
+    
     id cellObjc = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowCell];
+    
     // 如果没有遵循 DWBaseCellProtocol 协议将直接返回安全数组
     if (![cellObjc conformsToProtocol:@protocol(DWBaseCellProtocol)]) {
-        return [self createSecurityCellWithTableView:tableView cellForRowAtIndexPath:indexPath];
+        return [self createSecurityTableView:tableView cellForRowAtIndexPath:indexPath cellName:nil];
     }
     
     id <DWBaseCellProtocol>protocolCell = cellObjc;
@@ -196,7 +126,7 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
     id cell = [protocolCell cellWithTableView:tableView];
     
     // 实例对象不存在直接返回一个安全Cell
-    if (!cell) return [self createSecurityCellWithTableView:tableView cellForRowAtIndexPath:indexPath];
+    if (!cell) return [self createSecurityTableView:tableView cellForRowAtIndexPath:indexPath cellName:NSStringFromClass(cell)];
     
     // 绑定数据
     id cellData = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowData];
@@ -213,9 +143,17 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
 }
 
 /** 创建安全Cell */
-- (UITableViewCell *)createSecurityCellWithTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIndentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndentifier];
+- (UITableViewCell *)createSecurityTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath cellName:(NSString *)cellName{
+    UITableViewCell *cell;
+    static NSString *CellIndentifier;
+    static NSString *customCellIndentifier;
+    if (IsEmpty(cellName)) {
+        CellIndentifier = @"Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIndentifier];
+    }else{
+        customCellIndentifier = cellName;
+        cell = [tableView dequeueReusableCellWithIdentifier:customCellIndentifier];
+    }
     if(cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier];
     }
@@ -269,6 +207,9 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
         case DWBaseTableAdapterRowType_rowDelegate:
             return dataSourceModel.myDelegate;
             break;
+        case DWBaseTableAdapterRowType_rowModel:
+            return dataSourceModel;
+            break;
         default:
             return nil;
             break;
@@ -289,13 +230,6 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
         }
     }
     return DWBaseTableAdapterRow_normal;
-}
-
-/** 绑定handler */
--(void)configHandler:(id)handler{
-    if (handler) {
-        self.adapterHandler = handler;
-    }
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "ViewAdapter.h"
+#import "DWBaseTableAdapter+Action.h"
 #import "ViewAdapterTypeCell1.h"
 #import "ViewAdapterTypeCell2.h"
 #import "ViewAdapterTypeCell3.h"
