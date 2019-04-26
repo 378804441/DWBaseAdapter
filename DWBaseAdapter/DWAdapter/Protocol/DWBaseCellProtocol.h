@@ -27,9 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 绑定数据源 */
 - (void)bindWithCellModel:(id)cellModel indexPath:(NSIndexPath *)indexPath;
 
-/** 指定delegate */
-//- (void)setMyDelegate:(id)object;
-
 @end
 
 NS_ASSUME_NONNULL_END

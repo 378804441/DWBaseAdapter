@@ -9,7 +9,7 @@
 #import "DWBaseTableAdapter.h"
 
 
-#define IsEmpty(str)            (str == nil || ![str respondsToSelector:@selector(isEqualToString:)] || [str isEqualToString:@""])
+#define IsEmpty(str)  (str == nil || ![str respondsToSelector:@selector(isEqualToString:)] || [str isEqualToString:@""])
 
 @interface DWBaseTableAdapter()
 
