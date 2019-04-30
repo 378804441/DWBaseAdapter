@@ -52,7 +52,11 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 @property (nonatomic, assign)           CGFloat securityCellHeight;
 
 /** 最大线程 */
+#if OS_OBJECT_USE_OBJC
 @property (nonatomic, strong)           dispatch_semaphore_t semaphore;
+#else
+@property (nonatomic, assign)           dispatch_semaphore_t semaphore;
+#endif
 
 /** 是否关闭高度缓存 - 默认是开启的 (YES:关闭  NO:开启) */
 @property (nonatomic, assign)           BOOL closeHighlyCache;
