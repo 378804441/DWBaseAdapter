@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "DWBaseAdapter"
   s.version      = "0.0.1"
-s.summary      = "将tableview做成一个适配器模式，结合了rowType形式"
+  s.summary      = "A short description of DWBaseAdapter."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-                    将tableview做成一个适配器模式，结合了rowType形式
+			将tableView代理方法拆分出去，瘦身VC/View层接入tableView 导致臃肿
                    DESC
 
   s.homepage     = "https://github.com/378804441/DWBaseAdapter"
@@ -40,7 +40,7 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #
 
   s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license      = { :type => "MIT"}
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -53,10 +53,10 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #  profile URL.
   #
 
-  s.author               = { "Dingwei" => "378804441@qq.com" }
-  # Or just: s.author    = "Dingwei"
-  # s.authors            = { "Dingwei" => "378804441@qq.com" }
-  # s.social_media_url   = "http://twitter.com/Dingwei"
+  s.author             = { "丁巍" => "378804441@qq.com" }
+  # Or just: s.author    = "丁巍"
+  # s.authors            = { "丁巍" => "378804441@qq.com" }
+  # s.social_media_url   = "http://twitter.com/丁巍"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -64,8 +64,8 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  s.platform     = :ios, "8.0"
+   s.platform     = :ios
+  # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -80,7 +80,7 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/378804441/DWBaseAdapter.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/378804441/DWBaseAdapter.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -117,7 +117,7 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #  the lib prefix of their name.
   #
 
-  s.framework  = "UIKit"
+  # s.framework  = "SomeFramework"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
   # s.library   = "iconv"
@@ -130,7 +130,9 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  s.requires_arc = true
+  # s.requires_arc = true
 
+  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+  # s.dependency "JSONKit", "~> 1.4"
 
 end

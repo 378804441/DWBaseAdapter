@@ -51,18 +51,14 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 /** 不遵循 DWBaseTableViewProtocol 协议时候安全数组高度*/
 @property (nonatomic, assign)           CGFloat securityCellHeight;
 
-/** 最大线程 */
-#if OS_OBJECT_USE_OBJC
-@property (nonatomic, strong)           dispatch_semaphore_t semaphore;
-#else
-@property (nonatomic, assign)           dispatch_semaphore_t semaphore;
-#endif
-
 /** 是否关闭高度缓存 - 默认是开启的 (YES:关闭  NO:开启) */
 @property (nonatomic, assign)           BOOL closeHighlyCache;
 
 /** 注册tableView */
 @property (nonatomic, strong, readonly) UITableView *tableView;
+
+/** 最大线程 */
+@property (nonatomic, strong)           dispatch_semaphore_t semaphore;
 
 
 #pragma mark - public method
