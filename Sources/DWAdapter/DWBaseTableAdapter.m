@@ -66,9 +66,9 @@
         self.diffDataSource = self.dataSource;
     }
     
-    GDiffCore *diff = [GDiffCore new];
-    DWIndexManager *result = [diff diff:self.dataSource newArray:self.diffDataSource];
-    
+//    GDiffCore *diff = [GDiffCore new];
+//    DWIndexManager *result = [diff diff:self.dataSource newArray:self.diffDataSource];
+//    
 //    [self deleteCellWithIndexPaths:result.deletes];
 }
 
