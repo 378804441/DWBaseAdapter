@@ -8,11 +8,13 @@
 
 #import "ViewAdapter.h"
 #import "DWBaseTableAdapter+Action.h"
+#import "DWBaseTableAdapter+Refresh.h"
 #import "ViewAdapterTypeCell1.h"
 #import "ViewAdapterTypeCell2.h"
 #import "ViewAdapterTypeCell3.h"
 #import "ViewAdapterTypeCell4.h"
 #import "ViewAdapterTypeCell5.h"
+#import "CellModel2.h"
 
 typedef NS_ENUM(NSInteger, ViewAdapterType){
     ViewAdapterType_cell1 = 0,
@@ -36,7 +38,10 @@ typedef NS_ENUM(NSInteger, ViewAdapterType){
     [dataArray addObject:cellModel_1];
     
     
-    DWBaseTableDataSourceModel *cellModel_2 = [DWBaseTableDataSourceModel initWithTag:ViewAdapterType_cell2 data:nil cell:[ViewAdapterTypeCell2 class]];
+    CellModel2 *model2 = [[CellModel2 alloc] init];
+    model2.title  = @"什么什么什么?";
+    model2.height = 100;
+    DWBaseTableDataSourceModel *cellModel_2 = [DWBaseTableDataSourceModel initWithTag:ViewAdapterType_cell2 data:model2 cell:[ViewAdapterTypeCell2 class]];
     [dataArray addObject:cellModel_2];
     
     
@@ -59,8 +64,19 @@ typedef NS_ENUM(NSInteger, ViewAdapterType){
 
 -(void)cell4_clickDelegate{
     NSLog(@"点击了 cell4");
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-    [self deleteCellWithIndexPath:indexPath indexSet:nil];
+    NSInteger selectIntger = 1;
+    NSMutableArray <DWBaseTableDataSourceModel *>*dataSourceM = [NSMutableArray arrayWithArray:self.dataSource];
+    DWBaseTableDataSourceModel *dataModel = [dataSourceM objectAtIndex:selectIntger];
+    CellModel2 *cellModel = dataModel.data;
+    cellModel.title  = @"6666666";
+    cellModel.height =  30;
+    dataModel.data = cellModel;
+    
+    [self reloadTableView];
+    
+//    self.diffDataSource = [dataSourceM copy];
+    
+//    [self reloadAdapter];
 }
 
 

@@ -8,7 +8,6 @@
 
 #import "DWBaseTableAdapter+Refresh.h"
 
-#define IsNull(obj)             (obj == nil || [obj isEqual:[NSNull null]])
 
 @implementation DWBaseTableAdapter (Refresh)
 
@@ -19,6 +18,16 @@
     NSParameterAssert(self.tableView);
     [self reloadTableViewWithIndexSet:nil indexPath:nil];
 }
+
+/**
+ 刷新tableView协议 - 刷新, 清除高度缓存
+ */
+-(void)reloadTableViewClearCache{
+    NSParameterAssert(self.tableView);
+    [self clearCache];
+    [self reloadTableViewWithIndexSet:nil indexPath:nil];
+}
+
 
 /**
  刷新tableView协议

@@ -11,6 +11,7 @@
 #import "DWBaseTableDataSourceModel.h"
 #import "DWBaseTableViewProtocol.h"
 #import "DWBaseCellProtocol.h"
+#import "DWAdapterCoinf.h"
 
 /** tableView 类型 */
 typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowEnum){
@@ -42,13 +43,19 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 @property (nonatomic, weak)   id<DWBaseTableViewProtocol> tableProtocolDelegate;
 
 /** 数据源 */
-@property (nonatomic, strong)           NSMutableArray *dataSource;
+@property (nonatomic, strong)           NSArray *dataSource;
+
+/** 新的数据源 （需要diff判断的新数据源） */
+@property (nonatomic, strong)           NSArray *diffDataSource;
 
 /** 不遵循 DWBaseTableViewProtocol 协议时候安全数组高度*/
 @property (nonatomic, assign)           CGFloat securityCellHeight;
 
 /** 最大线程 */
 @property (nonatomic, strong)           dispatch_semaphore_t semaphore;
+
+/** 是否关闭高度缓存 - 默认是开启的 (YES:关闭  NO:开启) */
+@property (nonatomic, assign)           BOOL closeHighlyCache;
 
 /** 注册tableView */
 @property (nonatomic, strong, readonly) UITableView *tableView;
@@ -70,5 +77,11 @@ typedef NS_ENUM(NSInteger, DWBaseTableAdapterRowType){
 
 /** 检测tableView类型 */
 -(DWBaseTableAdapterRowEnum)checkRowType;
+
+/** 刷新adapter (更改数据源将会进行 diff计算 并精准刷新) */
+-(void)reloadAdapter;
+
+//清除高度缓存
+-(void)clearCache;
 
 @end

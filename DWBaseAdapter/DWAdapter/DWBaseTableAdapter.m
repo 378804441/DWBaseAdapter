@@ -7,11 +7,13 @@
 //
 
 #import "DWBaseTableAdapter.h"
+#import "GDiffCore.h"
+#import "DWBaseTableAdapter+Action.h"
 
-
-#define IsEmpty(str)  (str == nil || ![str respondsToSelector:@selector(isEqualToString:)] || [str isEqualToString:@""])
 
 @interface DWBaseTableAdapter()
+
+@property (nonatomic, strong) NSMutableDictionary *heightCache;     //高度缓存
 
 @end
 
@@ -28,6 +30,7 @@
         _tableView              = tableView;
         self.securityCellHeight = 44;
         self.semaphore          = dispatch_semaphore_create(1);
+        self.heightCache        = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -41,9 +44,9 @@
 #pragma mark - 初始化DataSource方法
 
 //数据源初始化
--(NSMutableArray *)dataSource{
+-(NSArray *)dataSource{
     if(!_dataSource){
-        _dataSource = [self instanceDataSource];
+        _dataSource = [[self instanceDataSource] copy];
     }
     return _dataSource;
 }
@@ -52,6 +55,36 @@
 -(NSMutableArray *)instanceDataSource{
     NSMutableArray *array = [NSMutableArray array];
     return array;
+}
+
+
+#pragma mark - public method
+
+/** 刷新adapter (更改数据源将会进行 diff计算 并精准刷新) */
+-(void)reloadAdapter{
+    if (IsNull(self.diffDataSource)) {
+        self.diffDataSource = self.dataSource;
+    }
+    
+    GDiffCore *diff = [GDiffCore new];
+    DWIndexManager *result = [diff diff:self.dataSource newArray:self.diffDataSource];
+    
+//    [self deleteCellWithIndexPaths:result.deletes];
+}
+
+//清除高度缓存
+-(void)clearCache{
+    [self.heightCache removeAllObjects];
+}
+
+
+#pragma mark - getter & setter
+
+// 缓存高度不让生效
+-(void)setCloseHighlyCache:(BOOL)closeHighlyCache{
+    if (closeHighlyCache) {
+        self.heightCache = nil;
+    }
 }
 
 
@@ -95,15 +128,31 @@
     // 数据源添加进来的Cell如果没有遵循该协议直接返回安全高度
     if (![cellObjc conformsToProtocol:@protocol(DWBaseCellProtocol)]) return self.securityCellHeight==0 ? CGFLOAT_MIN : self.securityCellHeight;
     
-    /** 需要传Model 动态计算高度 */
-    if([cellObjc respondsToSelector:@selector(getAutoCellHeightWithModel:)]){
-        id cellData = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowData];
-        return [cellObjc getAutoCellHeightWithModel:cellData];
+    //高度缓存
+    DWBaseTableDataSourceModel *dataModel = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowModel];
+    NSString *heightKey = [NSString stringWithFormat:@"%lu", (unsigned long)dataModel.hash];
+    NSNumber *heightNumber = heightKey ? self.heightCache[heightKey] : nil;
+    if (heightNumber) {
+        return [heightNumber floatValue];
+    } else {
+        CGFloat cellH;
+        /** 需要传Model 动态计算高度 */
+        if([cellObjc respondsToSelector:@selector(getAutoCellHeightWithModel:)]){
+            id cellData = [self getDataSourceWithIndexPath:indexPath type:DWBaseTableAdapterRowType_rowData];
+            cellH = [cellObjc getAutoCellHeightWithModel:cellData];
+            
         /** 不需要传参 固定高度 */
-    }else if([cellObjc respondsToSelector:@selector(getAutoCellHeight)]){
-        return [cellObjc getAutoCellHeight];
+        }else if([cellObjc respondsToSelector:@selector(getAutoCellHeight)]){
+            cellH = [cellObjc getAutoCellHeight];
+            
         /** 安全高度 */
-    }else return self.securityCellHeight==0 ? CGFLOAT_MIN : self.securityCellHeight;
+        }else{
+            cellH = self.securityCellHeight==0 ? CGFLOAT_MIN : self.securityCellHeight;
+        }
+        
+        if (heightKey) self.heightCache[heightKey] = @(cellH);
+        return cellH;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -174,7 +223,7 @@
 #pragma mark - 解析每行DataSource
 
 -(id)getDataSourceWithIndexPath:(NSIndexPath *)indexPath type:(DWBaseTableAdapterRowType)type{
-    if([self checkRowType] == DWBaseTableAdapterRow_noGrop) return [self noGroupRowTypeFromArray:self.dataSource indexPath:indexPath type:type];
+    if([self checkRowType] == DWBaseTableAdapterRow_noGrop)    return [self noGroupRowTypeFromArray:self.dataSource indexPath:indexPath type:type];
     else if([self checkRowType] == DWBaseTableAdapterRow_grop) return [self rowTypeFromArray:self.dataSource indexPath:indexPath type:type];
     return nil; //数据源没有数据
 }

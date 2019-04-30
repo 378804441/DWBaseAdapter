@@ -7,6 +7,7 @@
 //
 
 #import "ViewAdapterTypeCell2.h"
+#import "CellModel2.h"
 
 @implementation ViewAdapterTypeCell2
 
@@ -24,7 +25,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor grayColor];
+//        self.backgroundColor = [UIColor grayColor];
     }
     return self;
 }
@@ -32,8 +33,16 @@
 
 #pragma mark - cell protocol
 
-+(float)getAutoCellHeight{
-    return 60;
++(float)getAutoCellHeightWithModel:(id)cellModel{
+    CellModel2 *dataDic = cellModel;
+    return dataDic.height;
+}
+
+-(void)bindWithCellModel:(id)cellModel indexPath:(NSIndexPath *)indexPath{
+    CellModel2 *dataDic = cellModel;
+    NSString *text = dataDic.title;
+    self.textLabel.text = text;
+    self.textLabel.font = [UIFont systemFontOfSize:12];
 }
 
 

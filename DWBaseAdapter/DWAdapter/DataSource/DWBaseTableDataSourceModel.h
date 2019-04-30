@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GDiffObjectProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DWBaseTableDataSourceModel : NSObject
+@interface DWBaseTableDataSourceModel : NSObject<GDiffObjectProtocol>
 
 
 #pragma mark - public property
@@ -25,7 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id cell;
 
 /** delegate */
-@property (nonatomic, weak) id myDelegate;
+@property (nonatomic, weak)   id myDelegate;
+
+/** 哈希地址 */
+@property (nonatomic, strong, readonly) NSString *modelHash;
+
 
 
 #pragma mark - public method
@@ -35,6 +40,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 初始化model */
 + (instancetype)initWithTag:(NSInteger)tag data:(id __nullable)data cell:(id __nullable)cell delegate:(id)delegate;
+
+
+#pragma mark - diff Protocol
+
+/** 唯一标识符 */
+- (nonnull id<NSObject>)diffIdentifier;
+
+/** 当前model什么字段发生改变时候需要diff计算 */
+- (BOOL)isEqual:(nullable id<GDiffObjectProtocol>)object;
 
 @end
 

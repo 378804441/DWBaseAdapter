@@ -8,10 +8,83 @@
 
 #import "DWBaseTableAdapter+Action.h"
 
-#define WS(weakSelf)    __weak __typeof(&*self)weakSelf = self
-#define SS(strongSelf)  __strong __typeof__(weakSelf) strongSelf = weakSelf
-
 @implementation DWBaseTableAdapter (Action)
+
+
+/** 不分组批量删除 */
+-(void)deleteCellWithIndexPaths:(NSArray <NSIndexPath *>*)indexPaths{
+    
+    // 将数据源 拷贝一份Mutable 类型
+    NSMutableArray *dataSourceM = [self.dataSource mutableCopy];
+    
+    // 批量删除
+    if (indexPaths) {
+        
+        DWBaseTableAdapterRowEnum rowType = [self checkRowType];
+        
+        // 平铺类型
+        if (rowType == DWBaseTableAdapterRow_noGrop){
+            XCSafeInvokeThread(^{
+                dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+                
+                // 删除数据源
+                for (int i=0; i<indexPaths.count; i++) {
+                    NSIndexPath *path = indexPaths[i];
+                    [dataSourceM removeObjectAtIndex:path.row-i];
+                }
+                
+                // 删除动画
+                self.dataSource = [dataSourceM copy];
+                [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView endUpdates];
+                dispatch_semaphore_signal(self.semaphore);
+            });
+            
+            
+        // 分组类型
+        }else if(rowType == DWBaseTableAdapterRow_grop){
+            XCSafeInvokeThread(^{
+                dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+                
+                // 删除数据源
+                BOOL isSetDelete = NO;   // 整个 被删除
+                NSInteger deleteSet = 0;
+                for (int i=0; i<indexPaths.count; i++) {
+                    NSIndexPath *path = indexPaths[i];
+                    NSMutableArray *tempArr = [dataSourceM[path.section] mutableCopy];
+                    [tempArr removeObjectAtIndex:path.row-i];
+                    
+                    // section 数据都被删除掉了的话 直接删除scetion
+                    if (tempArr.count == 0) {
+                        isSetDelete = YES;
+                        deleteSet = path.section;
+                        [dataSourceM removeObjectAtIndex:path.section];
+                    }else{
+                        [dataSourceM replaceObjectAtIndex:path.section withObject:tempArr];
+                    }
+                }
+                
+                // 删除动画
+                self.dataSource = [dataSourceM copy];
+                [self.tableView beginUpdates];
+                
+                if (isSetDelete) {
+                    NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:deleteSet];
+                    [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
+                }else{
+                    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+                }
+                
+                [self.tableView endUpdates];
+                dispatch_semaphore_signal(self.semaphore);
+            });
+        }
+        
+    }
+}
+
+
 
 /** 删除cell */
 -(void)deleteCellWithIndexPath:(NSIndexPath * __nullable)indexPath indexSet:(NSIndexSet * __nullable)indexSet{
@@ -24,28 +97,43 @@
     if (rowType == DWBaseTableAdapterRow_noGrop) indexSet = nil;
     if (indexSet) indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
+    // 将数据源 拷贝一份Mutable 类型
+    NSMutableArray *dataSourceM = [self.dataSource mutableCopy];
+    
     WS(weakSelf);
     [self checkDataSourceWithIndexPath:indexPath block:^(DWBaseTableAdapterRowEnum type) {
         SS(strongSelf);
         if (type == DWBaseTableAdapterRow_noGrop) {
+            
+            // 单个删除
             NSInteger deleteLocation = indexPath.row;
             dispatch_semaphore_wait(strongSelf.semaphore, DISPATCH_TIME_FOREVER);
-            [self.dataSource removeObjectAtIndex:deleteLocation];
-            [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            [self.tableView endUpdates];
-            dispatch_semaphore_signal(strongSelf.semaphore);
+            [dataSourceM removeObjectAtIndex:deleteLocation];
+            
+            XCSafeInvokeThread(^{
+                self.dataSource = [dataSourceM copy];
+                [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                [self.tableView endUpdates];
+                dispatch_semaphore_signal(strongSelf.semaphore);
+            });
+            
         }else if(type == DWBaseTableAdapterRow_grop){
             
             // 删除整个session
             if (indexSet) {
                 NSInteger deleteLocation = indexSet.firstIndex;
                 dispatch_semaphore_wait(strongSelf.semaphore, DISPATCH_TIME_FOREVER);
-                [self.dataSource removeObjectAtIndex:deleteLocation];
-                [self.tableView beginUpdates];
-                [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
-                [self.tableView endUpdates];
-                dispatch_semaphore_signal(strongSelf.semaphore);
+                [dataSourceM removeObjectAtIndex:deleteLocation];
+                
+                XCSafeInvokeThread(^{
+                    self.dataSource = [dataSourceM copy];
+                    [self.tableView beginUpdates];
+                    [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
+                    [self.tableView endUpdates];
+                    dispatch_semaphore_signal(strongSelf.semaphore);
+                });
+                
                 return ;
             }
             
@@ -55,12 +143,16 @@
             NSMutableArray * tempArr = [[NSMutableArray alloc] init];
             tempArr = [self.dataSource[indexPath.section] mutableCopy];
             [tempArr removeObjectAtIndex:indexPath.row];
-            [self.dataSource replaceObjectAtIndex:indexPath.section withObject:tempArr];
+            [dataSourceM replaceObjectAtIndex:indexPath.section withObject:tempArr];
             
-            [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            [self.tableView endUpdates];
-            dispatch_semaphore_signal(strongSelf.semaphore);
+            XCSafeInvokeThread(^{
+                self.dataSource = [dataSourceM copy];
+                [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                [self.tableView endUpdates];
+                dispatch_semaphore_signal(strongSelf.semaphore);
+            });
+            
         }
     }];
 }

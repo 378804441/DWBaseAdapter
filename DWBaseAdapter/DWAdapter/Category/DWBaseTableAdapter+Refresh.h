@@ -16,9 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DWBaseTableAdapter (Refresh)
 
 /**
- 刷新tableView协议
+ 刷新tableView协议 - 只刷新内容 不清除高度缓存
  */
 -(void)reloadTableView;
+
+/**
+ 刷新tableView协议 - 刷新, 清除高度缓存
+ */
+-(void)reloadTableViewClearCache;
 
 
 /**

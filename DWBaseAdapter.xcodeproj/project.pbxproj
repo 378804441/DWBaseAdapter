@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		350B7B012248CADF005E8BE4 /* ViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B7B002248CADE005E8BE4 /* ViewAdapter.m */; };
+		3528F3B722740EC300AB7153 /* ViewAdapterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3528F3B622740EC300AB7153 /* ViewAdapterGroup.m */; };
+		3528F3BB2274249D00AB7153 /* DWArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3528F3BA2274249D00AB7153 /* DWArray.m */; };
+		3528F3BF2274275A00AB7153 /* DWAdapterCoinf.m in Sources */ = {isa = PBXBuildFile; fileRef = 3528F3BE2274275A00AB7153 /* DWAdapterCoinf.m */; };
+		3528F3C322767F7200AB7153 /* CellModel2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3528F3C222767F7200AB7153 /* CellModel2.m */; };
 		3597E4B9225C44FD0087C66A /* DWBaseTableAdapter+Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597E4B6225C44FD0087C66A /* DWBaseTableAdapter+Action.m */; };
 		3597E4BA225C44FD0087C66A /* DWBaseTableAdapter+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597E4B7225C44FD0087C66A /* DWBaseTableAdapter+Refresh.m */; };
 		35D818DF224C4FCE009FDFAD /* DWBaseTableDataSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B7AEA22486317005E8BE4 /* DWBaseTableDataSourceModel.m */; };
@@ -19,6 +23,13 @@
 		35D818ED224C5278009FDFAD /* ViewAdapterTypeCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D818EC224C5278009FDFAD /* ViewAdapterTypeCell3.m */; };
 		35D818F0224C53CB009FDFAD /* ViewAdapterTypeCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D818EF224C53CB009FDFAD /* ViewAdapterTypeCell4.m */; };
 		35D818F3224C58B8009FDFAD /* ViewAdapterTypeCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D818F2224C58B8009FDFAD /* ViewAdapterTypeCell5.m */; };
+		35E0058422728BCE0037E5F3 /* GDiffResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E0057A22728BCE0037E5F3 /* GDiffResult.m */; };
+		35E0058522728BCE0037E5F3 /* DWIndexManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E0057B22728BCE0037E5F3 /* DWIndexManager.m */; };
+		35E0058622728BCE0037E5F3 /* GDiffCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35E0057C22728BCE0037E5F3 /* GDiffCore.mm */; };
+		35E0058722728BCE0037E5F3 /* GDiffMoveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E0057D22728BCE0037E5F3 /* GDiffMoveItem.m */; };
+		35E0058822728BCE0037E5F3 /* DWDiffResultIntger.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E0057E22728BCE0037E5F3 /* DWDiffResultIntger.m */; };
+		35E0058E227291CC0037E5F3 /* XCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E0058C227291CC0037E5F3 /* XCThreadSafeArray.m */; };
+		35E0058F227291CC0037E5F3 /* XCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E0058D227291CC0037E5F3 /* XCThreadSafeDictionary.m */; };
 		7DB6047520629BDE00026F91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6047420629BDE00026F91 /* AppDelegate.m */; };
 		7DB6047820629BDE00026F91 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6047720629BDE00026F91 /* ViewController.m */; };
 		7DB6047B20629BDE00026F91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB6047920629BDE00026F91 /* Main.storyboard */; };
@@ -60,6 +71,14 @@
 		350B7AF422486317005E8BE4 /* DWIocComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWIocComponent.m; sourceTree = "<group>"; };
 		350B7AFF2248CADE005E8BE4 /* ViewAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewAdapter.h; sourceTree = "<group>"; };
 		350B7B002248CADE005E8BE4 /* ViewAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewAdapter.m; sourceTree = "<group>"; };
+		3528F3B522740EC300AB7153 /* ViewAdapterGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewAdapterGroup.h; sourceTree = "<group>"; };
+		3528F3B622740EC300AB7153 /* ViewAdapterGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewAdapterGroup.m; sourceTree = "<group>"; };
+		3528F3B92274249D00AB7153 /* DWArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWArray.h; sourceTree = "<group>"; };
+		3528F3BA2274249D00AB7153 /* DWArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWArray.m; sourceTree = "<group>"; };
+		3528F3BD2274275A00AB7153 /* DWAdapterCoinf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWAdapterCoinf.h; sourceTree = "<group>"; };
+		3528F3BE2274275A00AB7153 /* DWAdapterCoinf.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWAdapterCoinf.m; sourceTree = "<group>"; };
+		3528F3C122767F7200AB7153 /* CellModel2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellModel2.h; sourceTree = "<group>"; };
+		3528F3C222767F7200AB7153 /* CellModel2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellModel2.m; sourceTree = "<group>"; };
 		3597E4B5225C44FD0087C66A /* DWBaseTableAdapter+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DWBaseTableAdapter+Refresh.h"; sourceTree = "<group>"; };
 		3597E4B6225C44FD0087C66A /* DWBaseTableAdapter+Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DWBaseTableAdapter+Action.m"; sourceTree = "<group>"; };
 		3597E4B7225C44FD0087C66A /* DWBaseTableAdapter+Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DWBaseTableAdapter+Refresh.m"; sourceTree = "<group>"; };
@@ -74,6 +93,21 @@
 		35D818EF224C53CB009FDFAD /* ViewAdapterTypeCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewAdapterTypeCell4.m; sourceTree = "<group>"; };
 		35D818F1224C58B8009FDFAD /* ViewAdapterTypeCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewAdapterTypeCell5.h; sourceTree = "<group>"; };
 		35D818F2224C58B8009FDFAD /* ViewAdapterTypeCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewAdapterTypeCell5.m; sourceTree = "<group>"; };
+		35E0057922728BCE0037E5F3 /* GDiffObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDiffObjectProtocol.h; sourceTree = "<group>"; };
+		35E0057A22728BCE0037E5F3 /* GDiffResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDiffResult.m; sourceTree = "<group>"; };
+		35E0057B22728BCE0037E5F3 /* DWIndexManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWIndexManager.m; sourceTree = "<group>"; };
+		35E0057C22728BCE0037E5F3 /* GDiffCore.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GDiffCore.mm; sourceTree = "<group>"; };
+		35E0057D22728BCE0037E5F3 /* GDiffMoveItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDiffMoveItem.m; sourceTree = "<group>"; };
+		35E0057E22728BCE0037E5F3 /* DWDiffResultIntger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWDiffResultIntger.m; sourceTree = "<group>"; };
+		35E0057F22728BCE0037E5F3 /* GDiffCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDiffCore.h; sourceTree = "<group>"; };
+		35E0058022728BCE0037E5F3 /* DWIndexManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWIndexManager.h; sourceTree = "<group>"; };
+		35E0058122728BCE0037E5F3 /* GDiffResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDiffResult.h; sourceTree = "<group>"; };
+		35E0058222728BCE0037E5F3 /* DWDiffResultIntger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWDiffResultIntger.h; sourceTree = "<group>"; };
+		35E0058322728BCE0037E5F3 /* GDiffMoveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDiffMoveItem.h; sourceTree = "<group>"; };
+		35E0058A227291CC0037E5F3 /* XCThreadSafeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCThreadSafeArray.h; sourceTree = "<group>"; };
+		35E0058B227291CC0037E5F3 /* XCThreadSafeDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCThreadSafeDictionary.h; sourceTree = "<group>"; };
+		35E0058C227291CC0037E5F3 /* XCThreadSafeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCThreadSafeArray.m; sourceTree = "<group>"; };
+		35E0058D227291CC0037E5F3 /* XCThreadSafeDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCThreadSafeDictionary.m; sourceTree = "<group>"; };
 		7DB6047020629BDE00026F91 /* DWBaseAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DWBaseAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB6047320629BDE00026F91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7DB6047420629BDE00026F91 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -120,6 +154,10 @@
 		350B7AE22248630E005E8BE4 /* DWAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				3528F3BC2274273F00AB7153 /* Config */,
+				3528F3B82274228400AB7153 /* ThreadSafety */,
+				35E00589227291CC0037E5F3 /* XCThreadSafeContainer */,
+				35E0057722728BCE0037E5F3 /* Diff */,
 				3597E4B4225C44FD0087C66A /* Category */,
 				350B7AED22486317005E8BE4 /* Protocol */,
 				350B7AE822486317005E8BE4 /* DataSource */,
@@ -181,6 +219,33 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		3528F3B82274228400AB7153 /* ThreadSafety */ = {
+			isa = PBXGroup;
+			children = (
+				3528F3B92274249D00AB7153 /* DWArray.h */,
+				3528F3BA2274249D00AB7153 /* DWArray.m */,
+			);
+			path = ThreadSafety;
+			sourceTree = "<group>";
+		};
+		3528F3BC2274273F00AB7153 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				3528F3BD2274275A00AB7153 /* DWAdapterCoinf.h */,
+				3528F3BE2274275A00AB7153 /* DWAdapterCoinf.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		3528F3C022767F4C00AB7153 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3528F3C122767F7200AB7153 /* CellModel2.h */,
+				3528F3C222767F7200AB7153 /* CellModel2.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3597E4B4225C44FD0087C66A /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,11 +260,14 @@
 		35D818E3224C508A009FDFAD /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				3528F3C022767F4C00AB7153 /* Model */,
 				35D818E4224C5122009FDFAD /* Cells */,
 				7DB6047620629BDE00026F91 /* ViewController.h */,
 				7DB6047720629BDE00026F91 /* ViewController.m */,
 				350B7AFF2248CADE005E8BE4 /* ViewAdapter.h */,
 				350B7B002248CADE005E8BE4 /* ViewAdapter.m */,
+				3528F3B522740EC300AB7153 /* ViewAdapterGroup.h */,
+				3528F3B622740EC300AB7153 /* ViewAdapterGroup.m */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -219,6 +287,35 @@
 				35D818F2224C58B8009FDFAD /* ViewAdapterTypeCell5.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		35E0057722728BCE0037E5F3 /* Diff */ = {
+			isa = PBXGroup;
+			children = (
+				35E0058222728BCE0037E5F3 /* DWDiffResultIntger.h */,
+				35E0057E22728BCE0037E5F3 /* DWDiffResultIntger.m */,
+				35E0058022728BCE0037E5F3 /* DWIndexManager.h */,
+				35E0057B22728BCE0037E5F3 /* DWIndexManager.m */,
+				35E0057F22728BCE0037E5F3 /* GDiffCore.h */,
+				35E0057C22728BCE0037E5F3 /* GDiffCore.mm */,
+				35E0058322728BCE0037E5F3 /* GDiffMoveItem.h */,
+				35E0057D22728BCE0037E5F3 /* GDiffMoveItem.m */,
+				35E0057922728BCE0037E5F3 /* GDiffObjectProtocol.h */,
+				35E0058122728BCE0037E5F3 /* GDiffResult.h */,
+				35E0057A22728BCE0037E5F3 /* GDiffResult.m */,
+			);
+			path = Diff;
+			sourceTree = "<group>";
+		};
+		35E00589227291CC0037E5F3 /* XCThreadSafeContainer */ = {
+			isa = PBXGroup;
+			children = (
+				35E0058A227291CC0037E5F3 /* XCThreadSafeArray.h */,
+				35E0058C227291CC0037E5F3 /* XCThreadSafeArray.m */,
+				35E0058B227291CC0037E5F3 /* XCThreadSafeDictionary.h */,
+				35E0058D227291CC0037E5F3 /* XCThreadSafeDictionary.m */,
+			);
+			path = XCThreadSafeContainer;
 			sourceTree = "<group>";
 		};
 		7DB6046720629BDE00026F91 = {
@@ -409,14 +506,25 @@
 				35D818E0224C4FCE009FDFAD /* DWBaseHandler.m in Sources */,
 				35D818E1224C4FCE009FDFAD /* DWIocComponent.m in Sources */,
 				35D818E7224C5148009FDFAD /* ViewAdapterTypeCell1.m in Sources */,
+				3528F3BB2274249D00AB7153 /* DWArray.m in Sources */,
 				35D818F3224C58B8009FDFAD /* ViewAdapterTypeCell5.m in Sources */,
+				3528F3C322767F7200AB7153 /* CellModel2.m in Sources */,
+				35E0058422728BCE0037E5F3 /* GDiffResult.m in Sources */,
 				35D818E2224C4FCE009FDFAD /* DWBaseTableAdapter.m in Sources */,
+				35E0058F227291CC0037E5F3 /* XCThreadSafeDictionary.m in Sources */,
+				3528F3B722740EC300AB7153 /* ViewAdapterGroup.m in Sources */,
+				35E0058722728BCE0037E5F3 /* GDiffMoveItem.m in Sources */,
 				3597E4B9225C44FD0087C66A /* DWBaseTableAdapter+Action.m in Sources */,
 				350B7B012248CADF005E8BE4 /* ViewAdapter.m in Sources */,
+				3528F3BF2274275A00AB7153 /* DWAdapterCoinf.m in Sources */,
+				35E0058622728BCE0037E5F3 /* GDiffCore.mm in Sources */,
 				7DB6047820629BDE00026F91 /* ViewController.m in Sources */,
+				35E0058E227291CC0037E5F3 /* XCThreadSafeArray.m in Sources */,
 				35D818EA224C51DC009FDFAD /* ViewAdapterTypeCell2.m in Sources */,
+				35E0058822728BCE0037E5F3 /* DWDiffResultIntger.m in Sources */,
 				35D818F0224C53CB009FDFAD /* ViewAdapterTypeCell4.m in Sources */,
 				7DB6048320629BDE00026F91 /* main.m in Sources */,
+				35E0058522728BCE0037E5F3 /* DWIndexManager.m in Sources */,
 				7DB6047520629BDE00026F91 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,7 +25,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor redColor];
+//        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }

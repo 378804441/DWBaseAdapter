@@ -7,14 +7,16 @@
 //
 
 #import "ViewController.h"
-#import "ViewAdapter.h"
+#import "ViewAdapter.h"            // 平铺类型
+#import "ViewAdapterGroup.h"       // 分组类型
 
 #define DWSCREENWIDTH [[UIScreen mainScreen] bounds].size.width
 
 @interface ViewController ()<DWBaseTableViewProtocol>
 
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) ViewAdapter *adapter;
+@property (nonatomic, strong) UITableView      *tableView;
+@property (nonatomic, strong) ViewAdapter      *adapter;
+@property (nonatomic, strong) ViewAdapterGroup *groupAdapter;
 
 @end
 
@@ -24,7 +26,7 @@
     [super viewDidLoad];
     [self _initUI];
     [self createAllAD];
-    [self specifiedLinkEmailAD];
+    [self specifiedFlatAD];
 }
 
 
@@ -42,12 +44,22 @@
     _adapter = [[ViewAdapter alloc] initAdapterWithTableView:self.tableView];
     _adapter.tableProtocolDelegate = self;
     _adapter.securityCellHeight    = CGFLOAT_MIN;
+//    _adapter.closeHighlyCache      = YES;
+    
+    _groupAdapter = [[ViewAdapterGroup alloc] initAdapterWithTableView:self.tableView];
+    _groupAdapter.tableProtocolDelegate = self;
 }
 
-/** 指定AD */
--(void)specifiedLinkEmailAD{
+/** 指定平铺AD */
+-(void)specifiedFlatAD{
     self.tableView.dataSource = _adapter;
     self.tableView.delegate   = _adapter;
+}
+
+/** 指定分组AD */
+-(void)specifiedGroupAD{
+    self.tableView.dataSource = _groupAdapter;
+    self.tableView.delegate   = _groupAdapter;
 }
 
 -(UITableView *)instanceTableView{

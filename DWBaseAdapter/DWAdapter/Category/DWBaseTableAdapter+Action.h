@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DWBaseTableAdapter (Action)
 
+/** 不分组批量删除 */
+-(void)deleteCellWithIndexPaths:(NSArray <NSIndexPath *>*)indexPaths;
+
 /** 删除cell */
 -(void)deleteCellWithIndexPath:(NSIndexPath * __nullable)indexPath indexSet:(NSIndexSet * __nullable)indexSet;
 
