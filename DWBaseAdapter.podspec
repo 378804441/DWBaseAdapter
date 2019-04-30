@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "DWBaseAdapter"
+  s.name         = "DWAdapter"
   s.version      = "0.0.1"
 s.summary      = "将tableview做成一个适配器模式，结合了rowType形式"
 
@@ -132,7 +132,5 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
 
   s.requires_arc = true
 
-
-  s.dependency 'MJExtension', '~> 3.0' #依赖库
 
 end
