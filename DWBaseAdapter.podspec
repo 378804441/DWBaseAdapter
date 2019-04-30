@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "DWAdapter"
+  s.name         = "DWBaseAdapter"
   s.version      = "0.0.1"
 s.summary      = "将tableview做成一个适配器模式，结合了rowType形式"
 
@@ -53,7 +53,7 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #  profile URL.
   #
 
-  s.author             = { "Dingwei" => "378804441@qq.com" }
+  s.author               = { "Dingwei" => "378804441@qq.com" }
   # Or just: s.author    = "Dingwei"
   # s.authors            = { "Dingwei" => "378804441@qq.com" }
   # s.social_media_url   = "http://twitter.com/Dingwei"
@@ -91,7 +91,7 @@ s.summary      = "将tableview做成一个适配器模式，结合了rowType形�
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "DWBaseAdapter/Adapter/DWBaseView/**/*.{h,m}"
+  s.source_files  = "Classes", "DWBaseAdapter/DWAdapter/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
