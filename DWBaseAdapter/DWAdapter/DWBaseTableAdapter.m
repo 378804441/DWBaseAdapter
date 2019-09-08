@@ -220,8 +220,10 @@
 }
 
 
-#pragma mark - 解析每行DataSource
 
+#pragma mark - dataSource method
+
+/** 获取 指定的dataSource内容 */
 -(id)getDataSourceWithIndexPath:(NSIndexPath *)indexPath type:(DWBaseTableAdapterRowType)type{
     if([self checkRowType] == DWBaseTableAdapterRow_noGrop)    return [self noGroupRowTypeFromArray:self.dataSource indexPath:indexPath type:type];
     else if([self checkRowType] == DWBaseTableAdapterRow_grop) return [self rowTypeFromArray:self.dataSource indexPath:indexPath type:type];
@@ -264,7 +266,41 @@
             break;
     }
 }
-/****************** 获取 rowType END *******************/
+
+
+/** 删除相应数据源 */
+- (void)removeDataSource:(NSIndexPath *)indexPath indexSet:(NSIndexSet *)indexSet{
+    
+    NSParameterAssert(indexPath || indexSet);
+    
+    NSMutableArray *tempArray = [self.dataSource mutableCopy];
+    
+    if([self checkRowType] == DWBaseTableAdapterRow_grop){
+        NSParameterAssert(tempArray.count > 0 && tempArray[indexSet.firstIndex]);
+        NSParameterAssert(tempArray.count > 0 && tempArray[indexPath.section] && tempArray[indexPath.section][indexPath.row]);
+       
+        if (!IsNull(indexSet)) {
+            [tempArray removeObjectsAtIndexes:indexSet];
+            return;
+        }
+        
+        if (!IsNull(indexPath)) {
+            [tempArray[indexPath.section] removeObjectAtIndex:indexPath.row];
+        }
+        
+    }else if([self checkRowType] == DWBaseTableAdapterRow_noGrop){
+        NSParameterAssert(indexPath && tempArray.count > 0 && tempArray[indexPath.row] && indexPath.section == 0);
+        [tempArray removeObjectAtIndex:indexPath.row];
+    }
+    
+}
+
+
+/** 替换相应数据源 */
+- (void)replaceDataSource:(NSIndexPath *)indexPath indexSet:(NSIndexSet *)indexSet{
+    
+}
+
 
 
 #pragma mark - 判断是分组还是不分组 DataSource
